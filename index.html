@@ -1,20 +1,33 @@
 <!DOCTYPE HTML>
 <html ng-app="chatroom">
-  <head>
+
+<head>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body ng-controller="mainCtrl">
+</head>
+
+<body ng-controller="mainCtrl">
     <div class="main-container">
-      <h1> DevMountain Chat Room </h1>
-      <form ng-submit="postMessage(message)">
-        <input class="form-control text-box" type="text" ng-model="message" placeholder="Message">
-      </form>
-      <div class="messages-container">
-        <p ng-repeat="message in messages | reverse">
-          {{message.message}} </p>
-      </div>
+
+        <section class="images-container">
+            <section class="image-container"></section>
+            <div class="icon-container">
+                <img class='icon' src="https://devmounta.in/img/badge.png" alt="dev mtn icon" />
+            </div>
+        </section>
+
+
+        <h1> DevMountain Chat Room </h1>
+        <form ng-submit="postMessage(message)">
+            <input class="form-control text-box" type="text" ng-model="message" placeholder="Chat with DM-14 ...">
+        </form>
+        <h3>Filter through messages:</h3>
+        <input ng-model='filter' class="form-control text-box" type="text" name="name" placeholder="Search messages ...">
+        <div class="messages-container">
+            <p ng-repeat="message in messages | reverse | filter: filter">
+                {{message.message}} ---- {{message.createdAt | date: medium}}</p>
+        </div>
     </div>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
@@ -22,5 +35,6 @@
     <script src="js/mainCtrl.js"></script>
     <script src="js/messageService.js"></script>
     <script src="js/filter.js"></script>
-  </body>
+</body>
+
 </html>

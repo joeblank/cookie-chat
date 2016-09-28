@@ -24,6 +24,39 @@ angular.module('chatroom').service('messageService', function($http){
   //postMessage method here
 
 
-  //getMessages method here
+  this.postMessage = function(newMessage) {
+    return $http({
+      method: 'POST',
+      url: 'http://practiceapi.devmounta.in/api/chats',
+      data: {
+        message: newMessage //parse???
+      }
+    })
 
+  }
+
+
+  //getMessages method here
+  this.getMessages = function() {
+    return $http({
+        method: 'GET',
+        url: 'http://practiceapi.devmounta.in/api/chats'
+    })
+
+  }
+
+  //
+  // this.postCookie = function() {
+  //   return $http({
+  //     method: 'POST',
+  //     url: 'http://practiceapi.devmounta.in/api/cookies'
+  //   })
+  // }
+  // 
+  // this.getCookies = function() {
+  //   return $http({
+  //     method: 'GET',
+  //     url: 'http://practiceapi.devmounta.in/api/cookies'
+  //   })
+  // }
 });
